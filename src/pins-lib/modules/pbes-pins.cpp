@@ -33,6 +33,7 @@ static int mcrl2_verbosity = 0;
 using namespace mcrl2;
 using namespace mcrl2::core;
 using namespace mcrl2::data;
+using namespace mcrl2::pbes_system; 
 
 
 namespace ltsmin

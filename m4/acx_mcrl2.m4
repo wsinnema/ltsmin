@@ -37,7 +37,7 @@ AS_IF([test "x$acx_mcrl2" = "xyes"], [
     AS_IF([test "x$enable_mcrl2_jittyc" = "xno"], [
         AC_SUBST(MCRL2_PINS_CPPFLAGS, ["$MCRL2_PINS_CPPFLAGS -DDISABLE_JITTYC"])
         AC_MSG_NOTICE([disabling mCRL2 jittyc rewriter])
-    ])
+],[AC_SUBST([MCRL2_PINS_CPPFLAGS], [" -DMCRL2_JITTYC_AVAILABLE"])])
 
     mcrl2_lib_dir=""
     if test -d ${with_mcrl2}/lib/mcrl2; then
@@ -47,7 +47,7 @@ AS_IF([test "x$acx_mcrl2" = "xyes"], [
     fi
 
     #AX_CHECK_COMPILE_FLAG([-std=c++0x], [CXXFLAGS="$CXXFLAGS -std=c++0x"])
-    AC_SUBST(MCRL2_PINS_CPPFLAGS, ["$MCRL2_PINS_CPPFLAGS -isystem$with_mcrl2/include"])
+    AC_SUBST(MCRL2_PINS_CPPFLAGS, ["$MCRL2_PINS_CPPFLAGS -I$with_mcrl2/include"])
     AC_SUBST(MCRL2_PINS_LDFLAGS,  ["-L${mcrl2_lib_dir}"])
     AC_SUBST(MCRL2_LIBS, [""])
     AC_SUBST(MCRL2_LDFLAGS, ["$acx_cv_cc_export_dynamic -Wl,-rpath,${mcrl2_lib_dir}"])
